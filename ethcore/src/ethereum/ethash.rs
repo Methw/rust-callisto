@@ -133,6 +133,16 @@ pub struct EthashParams {
 	pub callisto_stake_address: Address,
 	/// Callisto Stake reward
 	pub callisto_stake_reward: U256,
+	/// CLOHF1 transition block
+	pub clohf1_transition: u64,
+	/// CLOHF1 Treasury Address
+	pub clohf1_treasury_address: Address,
+	/// CLOHF1 Treasury reward
+	pub clohf1_treasury_reward: U256,
+	/// CLOHF1 Stake Address
+	pub clohf1_stake_address: Address,
+	/// CLOHF1 Stake reward
+	pub clohf1_stake_reward: U256,
 }
 
 impl From<ethjson::spec::EthashParams> for EthashParams {
@@ -168,6 +178,11 @@ impl From<ethjson::spec::EthashParams> for EthashParams {
 			callisto_treasury_reward: p.callisto_treasury_reward.map_or_else(Default::default, Into::into),
 			callisto_stake_address: p.callisto_stake_address.map_or_else(Address::new, Into::into),
 			callisto_stake_reward: p.callisto_stake_reward.map_or_else(Default::default, Into::into),
+			clohf1_transition: p.clohf1_transition.map_or(u64::max_value(), Into::into),
+			clohf1_treasury_address: p.clohf1_treasury_address.map_or_else(Address::new, Into::into),
+			clohf1_treasury_reward: p.clohf1_treasury_reward.map_or_else(Default::default, Into::into),
+			clohf1_stake_address: p.clohf1_stake_address.map_or_else(Address::new, Into::into),
+			clohf1_stake_reward: p.clohf1_stake_reward.map_or_else(Default::default, Into::into),
 		}
 	}
 }
@@ -285,6 +300,15 @@ impl Engine<EthereumMachine> for Arc<Ethash> {
 			let treasury_reward = self.ethash_params.callisto_treasury_reward;
 			let stake_address = self.ethash_params.callisto_stake_address;
 			let stake_reward = self.ethash_params.callisto_stake_reward;
+
+			self.machine.add_balance(block, &author, &result_block_reward)?;
+			self.machine.add_balance(block, &treasury_address, &treasury_reward)?;
+			self.machine.add_balance(block, &stake_address, &stake_reward)?;
+		} else if number >= self.ethash_params.clohf1_transition {
+			let treasury_address = self.ethash_params.clohf1_treasury_address;
+			let treasury_reward = self.ethash_params.clohf1_treasury_reward;
+			let stake_address = self.ethash_params.clohf1_stake_address;
+			let stake_reward = self.ethash_params.clohf1_stake_reward;
 
 			self.machine.add_balance(block, &author, &result_block_reward)?;
 			self.machine.add_balance(block, &treasury_address, &treasury_reward)?;

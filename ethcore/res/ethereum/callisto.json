@@ -16,7 +16,13 @@
 				"callistoStakeReward": "0x340aad21b3b700000",
 				"eip649Reward": "0x16c4abbebea0100000",
 				"eip100bTransition": 20,
-				"eip649Transition": 20
+				"eip649Transition": 20,
+				"clohf1Transition": "0xffffffffffffffff",
+				"clohf1TreasuryAddress": "0x74682Fc32007aF0b6118F259cBe7bCCC21641600",
+				"clohf1TreasuryReward": "0x340aad21b3b700000",
+				"clohf1StakeAddress": "0x3c06f218Ce6dD8E2c535a8925A2eDF81674984D9",
+				"clohf1StakeReward": "0x68155a43676e00000",
+				"bombDefuseTransition": "0xffffffffffffffff"
 			}
 		}
 	},

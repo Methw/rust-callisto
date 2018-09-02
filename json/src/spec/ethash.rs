@@ -158,6 +158,26 @@ pub struct EthashParams {
 	/// Callisto Stake reward
 	#[serde(rename="callistoStakeReward")]
 	pub callisto_stake_reward: Option<Uint>,
+
+	/// CLOHF1 transition block
+	#[serde(rename="clohf1Transition")]
+	pub clohf1_transition: Option<Uint>,
+
+	/// CLOHF1 Treasury Address
+	#[serde(rename="clohf1TreasuryAddress")]
+	pub clohf1_treasury_address: Option<Address>,
+
+	/// CLOHF1 Treasury reward
+	#[serde(rename="clohf1TreasuryReward")]
+	pub clohf1_treasury_reward: Option<Uint>,
+
+	/// CLOHF1 Stake Address
+	#[serde(rename="clohf1StakeAddress")]
+	pub clohf1_stake_address: Option<Address>,
+
+	/// CLOHF1 Stake reward
+	#[serde(rename="clohf1StakeReward")]
+	pub clohf1_stake_reward: Option<Uint>,
 }
 
 /// Ethash engine deserialization.
@@ -281,6 +301,11 @@ mod tests {
 				callisto_treasury_reward: None,
 				callisto_stake_address: None,
 				callisto_stake_reward: None,
+				clohf1_transition: None,
+				clohf1_treasury_address: None,
+				clohf1_treasury_reward: None,
+				clohf1_stake_address: None,
+				clohf1_stake_reward: None,
 			}
 		});
 	}
@@ -334,6 +359,11 @@ mod tests {
 				callisto_treasury_reward: None,
 				callisto_stake_address: None,
 				callisto_stake_reward: None,
+				clohf1_transition: None,
+				clohf1_treasury_address: None,
+				clohf1_treasury_reward: None,
+				clohf1_stake_address: None,
+				clohf1_stake_reward: None,
 			}
 		});
 	}
